@@ -9,12 +9,10 @@ const ArticleSchema = new Schema({
   title: {
     type: String,
     unique: true,
-    required: "A Title is Required",
   },
   summary: {
     type: String,
     unique: true,
-    required: "A Sumary is Required",
   },
   url: {
     type: String,
@@ -23,6 +21,15 @@ const ArticleSchema = new Schema({
       "The URL was invalid.",
     ],
   },
+  image: {
+    type: String,
+  },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,

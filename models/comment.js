@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 
 // Schema Object
 const CommentSchema = new Schema({
-  comment: {
+  text: {
     type: String,
     required: "A Comment is Required",
   },
