@@ -43,20 +43,26 @@ module.exports = function(app) {
           image: image,
         };
 
-        // db.Article.create(result)
-        //   .then(dbArticle => {
-        //     res.json(dbArticle);
-        //   })
-        //   .catch(err => {
-        //     res.json(err);
-        //   });
+        db.Article.create(result)
+          .then(dbArticle => {
+            res.json(dbArticle);
+          })
+          .catch(err => {
+            res.json(err);
+          });
         results.push(result);
         console.log(result.image);
         console.log(result.author);
       });
+      if (error) {
+        throw error;
+      }
       res.redirect("/");
     });
   });
+
+  // Development Routes
+  // .........................................
 
   // Test route for adding articles to database
   app.post("/article-submit", (req, res) => {
@@ -90,5 +96,17 @@ module.exports = function(app) {
         // If an error occurs, send the error to the client
         res.json(err);
       });
+  });
+
+  // Test route for deleting all documents in the articles collection
+  app.delete("/MOAB", (req, res) => {
+    db.Article.deleteMany()
+      .then(dbArticles => {
+        console.log("Articles deleted.");
+      })
+      .catch(err => {
+        res.json(err);
+      });
+    res.send("All Articles Have Been Deleted. I Hope That Was On Purpose!");
   });
 };
