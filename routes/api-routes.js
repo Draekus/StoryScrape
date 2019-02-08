@@ -76,30 +76,30 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/article-save/:id", (req, res) => {
+  app.get("/article-save/:id", (req, res) => {
     let id = req.params.id;
     let savedState;
     console.log(id);
-    // db.Article.findById(id)
-    //   .then(article => {
-    //     console.log(`
-    //     Item with ID ${id} has a state of ${article.saved}
-    //     `);
-    //     savedState = article.saved;
-    //   })
-    //   .catch(err => {
-    //     res.json(err);
-    //   });
-    // db.Article.findOneAndUpdate({ _id: id }, { saved: !savedState })
-    //   .then(dbArticle => {
-    //     console.log(`
-    //     Item with ID ${dbArticle.id} has changed to state ${dbArticle.saved}
-    //     `);
-    //     res.redirect("/");
-    //   })
-    //   .catch(err => {
-    //     res.json(err);
-    //   });
+    db.Article.findById(id)
+      .then(article => {
+        console.log(`
+        Item with ID ${id} has a state of ${article.saved}
+        `);
+        savedState = article.saved;
+      })
+      .catch(err => {
+        res.json(err);
+      });
+    db.Article.findOneAndUpdate({ _id: id }, { saved: !savedState })
+      .then(dbArticle => {
+        console.log(`
+        Item with ID ${dbArticle.id} has changed to state ${!savedState}
+        `);
+        res.redirect("/");
+      })
+      .catch(err => {
+        res.json(err);
+      });
   });
 
   // Route for deleting all documents in the articles collection
