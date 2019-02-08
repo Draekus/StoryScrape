@@ -1,6 +1,8 @@
 const db = require("../models/index.js");
 const axios = require("axios");
 const cheerio = require("cheerio");
+const Article = require("../models/Article");
+const Comment = require("../models/Comment");
 
 module.exports = function(app) {
   // Main route for index page
