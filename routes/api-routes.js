@@ -1,12 +1,11 @@
+const db = require("../models/index.js");
 const axios = require("axios");
 const cheerio = require("cheerio");
-const Article = require("../models/Article");
-const Comment = require("../models/Comment");
 
 module.exports = function(app) {
   // Main route for index page
   app.get("/", function(req, res) {
-    Article.find({})
+    db.Article.find({})
       .then(function(dbArticle) {
         res.render("index", { article: dbArticle });
       })
@@ -47,7 +46,7 @@ module.exports = function(app) {
         // console.log(title);
         // console.log(summary);
         // console.log(image);
-        Article.create({
+        db.Article.create({
           title: title,
           url: url,
           summary: summary,
@@ -66,7 +65,7 @@ module.exports = function(app) {
   });
 
   app.get("/articles-saved", (req, res) => {
-    Article.find({})
+    db.Article.find({})
       .populate("comments")
       .then(function(dbArticle) {
         res.render("saved-articles", { article: dbArticle });
@@ -81,7 +80,7 @@ module.exports = function(app) {
     let id = req.params.id;
     let savedState;
     console.log(id);
-    // Article.findById(id)
+    // db.Article.findById(id)
     //   .then(article => {
     //     console.log(`
     //     Item with ID ${id} has a state of ${article.saved}
@@ -91,7 +90,7 @@ module.exports = function(app) {
     //   .catch(err => {
     //     res.json(err);
     //   });
-    // Article.findOneAndUpdate({ _id: id }, { saved: !savedState })
+    // db.Article.findOneAndUpdate({ _id: id }, { saved: !savedState })
     //   .then(dbArticle => {
     //     console.log(`
     //     Item with ID ${dbArticle.id} has changed to state ${dbArticle.saved}
@@ -105,7 +104,7 @@ module.exports = function(app) {
 
   // Route for deleting all documents in the articles collection
   app.get("/MOAB", (req, res) => {
-    Article.deleteMany()
+    db.Article.deleteMany()
       .then(dbArticles => {
         console.log("Articles deleted.");
         res.redirect("/");
@@ -121,7 +120,7 @@ module.exports = function(app) {
   // Test route for adding articles to database
   app.post("/article-submit", (req, res) => {
     // Create a new article using req.body
-    Article.create(req.body)
+    db.Article.create(req.body)
       .then(function(dbArticle) {
         // If saved successfully, send the the new Article document to the client
         console.log(
@@ -142,7 +141,7 @@ module.exports = function(app) {
     console.log(`id: ${id}`);
     const { name, comment } = req.body;
     console.log(name, comment);
-    Comment.create({ text: comment, author: name })
+    db.Comment.create({ text: comment, author: name })
       .then(dbComment => {
         console.log(dbComment.text);
       })
@@ -150,7 +149,7 @@ module.exports = function(app) {
         res.json(err);
       });
     console.log(newNote);
-    await Review.findOneAndUpdate(
+    await db.Review.findOneAndUpdate(
       { _id: id },
       { notes: newNote._id },
       { new: true }

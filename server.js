@@ -22,6 +22,7 @@ app.set("view engine", "handlebars");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+require("./routes/api-routes")(app);
 
 // Start the server
 app.listen(PORT, function() {
