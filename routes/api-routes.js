@@ -60,7 +60,7 @@ module.exports = function(app) {
           });
         results.push(result);
       });
-      res.json(results);
+      res.redirect("/");
     });
   });
 
