@@ -1,12 +1,3 @@
-/* .card {
-    width: 800px !important;
-    height: 700px !important;
-}
-
-.summary-text {
-    font-size: 17px;
-} */
-
 .title-text {
     margin-left: 15px !important;
     font-weight: 400 !important;
@@ -15,3 +6,14 @@
 .comments-link {
     float: right !important;
 }
+
+#sub-title {
+    border-bottom: 3px solid black;
+    margin-left: 55px;
+}
+
+
+.card {
+    height: 700px !important;
+}
+

@@ -4,7 +4,7 @@
       <a href="#" class="brand-logo center">Scrapey Scrape</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li><a href="/article-search">Scrape</a></li>
-        <li><a href="/articles-saved">Saved Articles</a></li>
+        <li class="active"><a href="/articles-saved">Saved Articles</a></li>
         <li><a href="/MOAB">Clear Articles</a></li>
       </ul>
     </div>
@@ -20,6 +20,7 @@
       </div>
     </div>
     {{#each article}}
+    {{#if saved}}
     <div class="row">
       <div class="col s0 m2"></div>
       <div class="col s12 m8">
@@ -40,13 +41,12 @@
           </div>
           <div class="card-action">
             <a href="{{url}}">Link to Article</a>
-            {{#unless saved}}
-              <a class="comments-link" href="/article-save/{{id}}">Save Article</a>
-            {{/unless}}
+             <a class="comments-link" href="/article-save/{{id}}">View Notes</a>
           </div>
         </div>
       </div>
     </div>
+    {{/if}}
     {{/each}}
     </div>
   </section>

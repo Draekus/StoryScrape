@@ -8,18 +8,12 @@ const Schema = mongoose.Schema;
 const ArticleSchema = new Schema({
   title: {
     type: String,
-    unique: true,
   },
   summary: {
     type: String,
-    unique: true,
   },
   url: {
     type: String,
-    match: [
-      /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm,
-      "The URL was invalid.",
-    ],
   },
   image: {
     type: String,
@@ -30,6 +24,10 @@ const ArticleSchema = new Schema({
       ref: "Comment",
     },
   ],
+  saved: {
+    type: Boolean,
+    default: false,
+  },
   date: {
     type: Date,
     default: Date.now,
