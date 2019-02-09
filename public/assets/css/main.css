@@ -1,3 +1,6 @@
+nav {
+  margin-bottom: 40px;
+}
 .title-text {
   margin-left: 15px !important;
   font-weight: 400 !important;
@@ -20,6 +23,12 @@
 
 .open-notes {
   float: right;
+  margin-bottom: 15px !important
+}
+
+.save-article {
+  float: right;
+  margin-bottom: 15px !important;
 }
 
 .delete-button {

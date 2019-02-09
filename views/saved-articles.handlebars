@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col s0 m2"></div>
       <div class="col s12 m8">
-        <div class="card large">
+        <div class="card">
           {{#if image}}
           <div class="card-image">
             <img src="{{image}}" alt="Sorry Image Not Available">
@@ -34,7 +34,7 @@
             <p class="summary-text">{{summary}}</p>
           </div>
           <div class="card-action">
-            <a href="{{url}}">Link to Article</a>
+            <a class="waves-effect waves-light btn  purple darken-3" href="{{url}}">Link to Article</a>
             <button class="waves-effect waves-light btn open-notes purple darken-3" data-id="{{id}}">View Notes</button>
           </div>
         </div>
@@ -50,7 +50,8 @@
 
             <label for="comment">Enter a comment:</label>
             <textarea name="comment" id="comment-input" cols="30" rows="10"></textarea>
-            <button class="btn waves-effect waves-light deep-purple lighten-1 submit-button" type="submit" href="#!" name="action">Submit
+            <button class="btn waves-effect waves-light deep-purple lighten-1 submit-button" type="submit" href="#!"
+              name="action">Submit
             </button>
           </form>
           <hr>
