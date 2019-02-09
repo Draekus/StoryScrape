@@ -1,25 +1,35 @@
 .title-text {
-    margin-left: 15px !important;
-    font-weight: 400 !important;
+  margin-left: 15px !important;
+  font-weight: 400 !important;
 }
 
 .comments-link {
-    float: right !important;
+  float: right !important;
 }
 
 #sub-title {
-    border-bottom: 3px solid black;
-    margin-left: 55px;
+  border-bottom: 3px solid black;
+  margin-left: 55px;
 }
 
 .modal-title {
-    border-bottom: 1px solid grey;
-    padding: 7px;
+  border-bottom: 1px solid grey;
+  padding: 7px;
+  margin-bottom: 15px;
 }
 
 .open-notes {
-    float: right;
+  float: right;
 }
+
 .delete-button {
-    float: right;
+  float: right;
+}
+
+.link {
+  color: #424242 !important;
+}
+
+.submit-button {
+  margin: 15px 0;
 }

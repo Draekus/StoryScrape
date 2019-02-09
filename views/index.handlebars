@@ -1,5 +1,5 @@
 <main>
-   <nav>
+  <nav>
     <div class="nav-wrapper deep-purple lighten-3">
       <a href="#" class="brand-logo center">Scrapey Scrape</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
@@ -13,13 +13,6 @@
 
   <section id="articles">
     <div class="article-wrapper"></div>
-    <div class="row">
-      <div class="col m5">
-      </div>
-      <div class="col m2">
-          <h2 id="sub-title">Articles</h2>
-      </div>
-    </div>
     {{#each article}}
     {{#unless saved}}
     <div class="row">
@@ -27,14 +20,14 @@
       <div class="col s12 m8">
         <div class="card">
           {{#if image}}
-            <div class="card-image">
-              <img src="{{image}}" alt="Sorry Image Not Available">
-            </div>
+          <div class="card-image">
+            <img src="{{image}}" alt="Sorry Image Not Available">
+          </div>
           {{/if}}
           {{#unless image}}
-            <div class="card-image">
-              <img src="http://staging1.lebanesefeast.com.au/wp-content/uploads/2018/10/picture-not-available.jpg" alt="Sorry Image Not Available">
-            </div>
+          <div class="card-image">
+            <img src="http://staging1.lebanesefeast.com.au/wp-content/uploads/2018/10/picture-not-available.jpg" alt="Sorry Image Not Available">
+          </div>
           {{/unless}}
           <span class="card-title title-text">{{title}}</span>
           <div class="card-content">
@@ -42,9 +35,6 @@
           </div>
           <div class="card-action">
             <a href="{{url}}">Link to Article</a>
-            {{#unless saved}}
-              <a class="comments-link" href="/article-save/{{id}}">Save Article</a>
-            {{/unless}}
           </div>
         </div>
       </div>

@@ -13,13 +13,6 @@
 
   <section id="articles">
     <div class="article-wrapper"></div>
-    <div class="row">
-      <div class="col m5">
-      </div>
-      <div class="col m2">
-        <h2 id="sub-title">Articles</h2>
-      </div>
-    </div>
     {{#each article}}
     {{#if saved}}
     <div class="row">
@@ -57,19 +50,31 @@
 
             <label for="comment">Enter a comment:</label>
             <textarea name="comment" id="comment-input" cols="30" rows="10"></textarea>
-            <button class="btn waves-effect waves-light purple accent-1" type="submit" href="#!" name="action">Submit
+            <button class="btn waves-effect waves-light deep-purple lighten-1 submit-button" type="submit" href="#!" name="action">Submit
             </button>
           </form>
           <hr>
           {{#each comments}}
-          <p>Author: {{author}}</p>
-          <p>Comment: {{text}}</p>
-          <button class="btn waves-effect waves-light red darken-2 delete-button" href="/comment-delete/{{id}}">X</button>
+          <div class="comment-wrapper">
+            <div class="row">
+              <div class="col s12 m6">
+                <div class="card grey lighten-1">
+                  <div class="card-content white-text">
+                    <span class="card-title">{{author}}</span>
+                    <p>{{text}}</p>
+                    <hr>
+                    <p>{{date}}</p>
+                  </div>
+                  <div class="card-action">
+                    <a class="link" href="/comment-delete/{{id}}">Delete Comment</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <hr>
           {{/each}}
-          {{#unless comments}}
-          <p>There are currently no comments for this article.</p>
-          {{/unless}}
+
         </div>
       </div>
       <div class="modal-footer">
