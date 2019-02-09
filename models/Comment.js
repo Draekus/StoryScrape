@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 const CommentSchema = new Schema({
   text: {
     type: String,
-    required: "A Comment is Required",
+    trim: true,
   },
   author: {
     type: String,

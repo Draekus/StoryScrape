@@ -1,5 +1,5 @@
 <main>
-   <nav>
+  <nav>
     <div class="nav-wrapper deep-purple lighten-3">
       <a href="#" class="brand-logo center">Scrapey Scrape</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
@@ -17,7 +17,7 @@
       <div class="col m5">
       </div>
       <div class="col m2">
-          <h2 id="sub-title">Articles</h2>
+        <h2 id="sub-title">Articles</h2>
       </div>
     </div>
     {{#each article}}
@@ -27,14 +27,14 @@
       <div class="col s12 m8">
         <div class="card large">
           {{#if image}}
-            <div class="card-image">
-              <img src="{{image}}" alt="Sorry Image Not Available">
-            </div>
+          <div class="card-image">
+            <img src="{{image}}" alt="Sorry Image Not Available">
+          </div>
           {{/if}}
           {{#unless image}}
-            <div class="card-image">
-              <img src="http://staging1.lebanesefeast.com.au/wp-content/uploads/2018/10/picture-not-available.jpg" alt="Sorry Image Not Available">
-            </div>
+          <div class="card-image">
+            <img src="http://staging1.lebanesefeast.com.au/wp-content/uploads/2018/10/picture-not-available.jpg" alt="Sorry Image Not Available">
+          </div>
           {{/unless}}
           <span class="card-title title-text">{{title}}</span>
           <div class="card-content">
@@ -42,14 +42,42 @@
           </div>
           <div class="card-action">
             <a href="{{url}}">Link to Article</a>
-             <a class="comments-link" href="/article-save/{{id}}">View Notes</a>
+            <button class="waves-effect waves-light btn open-notes purple darken-3" data-id="{{id}}">View Notes</button>
           </div>
         </div>
+      </div>
+    </div>
+    <div id="modal{{id}}" class="modal">
+      <div class="modal-content">
+        <div class="comments">
+          <h5 class="modal-title">Comments</h5>
+          <form action="/comment-save/{{id}}" method="POST">
+            <label for="author">Name:</label>
+            <input type="text" name="author" id="name-input">
+
+            <label for="comment">Enter a comment:</label>
+            <textarea name="comment" id="comment-input" cols="30" rows="10"></textarea>
+            <button class="btn waves-effect waves-light purple accent-1" type="submit" href="#!" name="action">Submit
+            </button>
+          </form>
+          <hr>
+          {{#each comments}}
+          <p>Author: {{author}}</p>
+          <p>Comment: {{text}}</p>
+          <button class="btn waves-effect waves-light red darken-2 delete-button" href="/comment-delete/{{id}}">X</button>
+          <hr>
+          {{/each}}
+          {{#unless comments}}
+          <p>There are currently no comments for this article.</p>
+          {{/unless}}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
       </div>
     </div>
     {{/if}}
     {{/each}}
     </div>
   </section>
-
 </main>

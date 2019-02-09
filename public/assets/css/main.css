@@ -12,3 +12,14 @@
     margin-left: 55px;
 }
 
+.modal-title {
+    border-bottom: 1px solid grey;
+    padding: 7px;
+}
+
+.open-notes {
+    float: right;
+}
+.delete-button {
+    float: right;
+}

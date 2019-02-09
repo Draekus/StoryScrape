@@ -6,10 +6,10 @@ module.exports = function(app) {
   // Main route for index page
   app.get("/", function(req, res) {
     db.Article.find({})
-      .then(function(dbArticle) {
+      .then(dbArticle => {
         res.render("index", { article: dbArticle });
       })
-      .catch(function(err) {
+      .catch(err => {
         // If an error occurs, send it back to the client
         res.json(err);
       });
@@ -42,10 +42,6 @@ module.exports = function(app) {
           summary: summary,
           image: image,
         };
-        // console.log(url);
-        // console.log(title);
-        // console.log(summary);
-        // console.log(image);
         db.Article.create({
           title: title,
           url: url,
@@ -55,7 +51,7 @@ module.exports = function(app) {
           .then(dbArticle => {
             console.log(dbArticle);
           })
-          .catch(function(err) {
+          .catch(err => {
             res.json(err);
           });
         results.push(result);
@@ -64,18 +60,20 @@ module.exports = function(app) {
     });
   });
 
+  // Route to view saved articles
   app.get("/articles-saved", (req, res) => {
     db.Article.find({})
       .populate("comments")
-      .then(function(dbArticle) {
+      .then(dbArticle => {
         res.render("saved-articles", { article: dbArticle });
       })
-      .catch(function(err) {
+      .catch(err => {
         // If an error occurs, send it back to the client
         res.json(err);
       });
   });
 
+  // Route to save a specific article to the database
   app.get("/article-save/:id", (req, res) => {
     let id = req.params.id;
     let savedState;
@@ -102,6 +100,41 @@ module.exports = function(app) {
       });
   });
 
+  // Route to save a comment to a specific article
+  app.post("/comment-save/:id", async (req, res) => {
+    const id = req.params.id;
+    const author = req.body.author;
+    const text = req.body.comment;
+    let commentID;
+    db.Comment.create({ text: text, author: author })
+      .then(dbComment => {
+        commentID = dbComment._id;
+        db.Article.findOneAndUpdate(
+          { _id: id },
+          { $push: { comments: commentID } },
+          { new: true }
+        )
+          .then(dbArticle => {
+            console.log(
+              `A comment was added to the articles collection with the ID of ${commentID}`
+            );
+          })
+          .catch(err => {
+            res.json(err);
+          });
+      })
+      .catch(err => {
+        res.json(err);
+      });
+
+    res.redirect("/articles-saved");
+  });
+
+  // Route for deleting a single comment
+  app.get("/comment-delete/:id", (req, res) => {
+    let id = req.params.id;
+    db.Comment.deleteOne({ _id: id });
+  });
   // Route for deleting all documents in the articles collection
   app.get("/MOAB", (req, res) => {
     db.Article.deleteMany()
@@ -121,40 +154,16 @@ module.exports = function(app) {
   app.post("/article-submit", (req, res) => {
     // Create a new article using req.body
     db.Article.create(req.body)
-      .then(function(dbArticle) {
+      .then(dbArticle => {
         // If saved successfully, send the the new Article document to the client
         console.log(
           `An article was added to the database.\n @ ${dbArticle.date}`
         );
         res.json(dbArticle);
       })
-      .catch(function(err) {
+      .catch(err => {
         // If an error occurs, send the error to the client
         res.json(err);
       });
-  });
-
-  // Test route for adding comments to database
-
-  app.post("/comment-submit/:id", async (req, res) => {
-    const id = req.params.id;
-    console.log(`id: ${id}`);
-    const { name, comment } = req.body;
-    console.log(name, comment);
-    db.Comment.create({ text: comment, author: name })
-      .then(dbComment => {
-        console.log(dbComment.text);
-      })
-      .catch(err => {
-        res.json(err);
-      });
-    console.log(newNote);
-    await db.Review.findOneAndUpdate(
-      { _id: id },
-      { notes: newNote._id },
-      { new: true }
-    );
-
-    res.redirect("/");
   });
 };
