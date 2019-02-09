@@ -11,7 +11,7 @@ module.exports = function(app) {
       })
       .catch(err => {
         // If an error occurs, send it back to the client
-        res.json(200, err);
+        res.json(500, err);
       });
   });
 
@@ -52,7 +52,7 @@ module.exports = function(app) {
             console.log(dbArticle);
           })
           .catch(err => {
-            res.json(200, err);
+            res.json(500, err);
           });
         results.push(result);
       });
@@ -69,7 +69,7 @@ module.exports = function(app) {
       })
       .catch(err => {
         // If an error occurs, send it back to the client
-        res.json(200, err);
+        res.json(500, err);
       });
   });
 
@@ -86,7 +86,7 @@ module.exports = function(app) {
         savedState = article.saved;
       })
       .catch(err => {
-        res.json(200, err);
+        res.json(500, err);
       });
     db.Article.findOneAndUpdate({ _id: id }, { saved: !savedState })
       .then(dbArticle => {
@@ -96,7 +96,7 @@ module.exports = function(app) {
         res.redirect("/");
       })
       .catch(err => {
-        res.json(200, err);
+        res.json(500, err);
       });
   });
 
@@ -120,11 +120,11 @@ module.exports = function(app) {
             );
           })
           .catch(err => {
-            res.json(200, err);
+            res.json(500, err);
           });
       })
       .catch(err => {
-        res.json(200, err);
+        res.json(500, err);
       });
 
     res.redirect("/articles-saved");
@@ -137,10 +137,10 @@ module.exports = function(app) {
     db.Comment.deleteOne({ _id: id })
       .then(dbComment => {
         console.log(dbComment);
-        res.redirect("/article-search");
+        res.redirect("/articles-saved");
       })
       .catch(err => {
-        res.json(200, err);
+        res.json(500, err);
       });
   });
   // Route for deleting all documents in the articles collection
@@ -151,7 +151,7 @@ module.exports = function(app) {
         res.redirect("/");
       })
       .catch(err => {
-        res.json(200, err);
+        res.json(500, err);
       });
   });
 
@@ -171,7 +171,7 @@ module.exports = function(app) {
       })
       .catch(err => {
         // If an error occurs, send the error to the client
-        res.json(200, err);
+        res.json(500, err);
       });
   });
 };
