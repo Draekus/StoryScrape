@@ -9,7 +9,7 @@ If you would like to pull in the latest articles from Rock Paper Shotgun simply 
 
 To view your saved articles simply click on the "Saved Articles" button found in the nav-bar. To leave a comment on one of your saved articles click on the "View Comments" button found on each article. This will bring up a window with a form on it that you can use to submit your comment which will then be displayed below. To delete a comment just click on the "delete-comment" button found on your comment.
 
-<img src="./public/assets/images/comment-page.png" alt="Sorry the image could not be displayed">
+<img src="./public/assets/images/comments-page.png" alt="Sorry the image could not be displayed">
 
 ## Technology Utilized
 <ul>
