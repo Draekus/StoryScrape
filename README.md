@@ -1,6 +1,6 @@
-# ScrapeyScrape
-<a href="https://scrapey-scrape.herokuapp.com/">Link To Site</a>
-Sscrapey Scrape is a web app that scrapes <a href="https://www.rockpapershotgun.com/">Rock Paper Shotgun</a>, a gaming news site, for articles and displays them on the main page. Users can then save an article and leave comments on them or discuss the article with other users.
+# <a href="https://scrapey-scrape.herokuapp.com/">ScrapeyScrape</a>
+
+Scrapey Scrape is a web app that scrapes <a href="https://www.rockpapershotgun.com/">Rock Paper Shotgun</a>, a gaming news site, for articles and displays them on the main page. Users can then save an article and leave comments on them or discuss the article with other users.
 
 ## Instructions
 If you would like to pull in the latest articles from Rock Paper Shotgun simply click the "Scrape" button found in the purple nav-bar at the top of the page. If you would like to clear out all the articles from the main page simply click the "Clear Articles" button in the nav-bar. Each article will have two buttons on it. One "Link to Article" which will take you to the original article hosted on Rock Paper Shotgun and another "Save Article" which will send the article to the Saved Articles page. 
