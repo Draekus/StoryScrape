@@ -21,7 +21,7 @@ module.exports = function(app) {
       const $ = cheerio.load(response.data);
       let results = [];
       console.log("Searching For Articles");
-      $("#archive-content").each(function(i, element) {
+      $(".archive-item").each(function(i, element) {
         let url = $(element)
           .find(".title")
           .children()
