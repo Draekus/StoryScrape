@@ -17,11 +17,11 @@ module.exports = function(app) {
 
   // Route that scrapes kotaku for articles and adds them to the database
   app.get("/article-search", (req, res) => {
-    axios.get("https://www.rockpapershotgun.com/").then(response => {
+    axios.get("https://www.rockpapershotgun.com/pc-game-reviews/").then(response => {
       const $ = cheerio.load(response.data);
       let results = [];
       console.log("Searching For Articles");
-      $(".blog-post").each(function(i, element) {
+      $("#archive-content").each(function(i, element) {
         let url = $(element)
           .find(".title")
           .children()
