@@ -31,7 +31,7 @@ module.exports = function(app) {
           .children()
           .text();
         let summary = $(element)
-          .find(".excerpt")
+          .find(".extract")
           .text();
         let image = $(element)
           .find(".alignnone")
